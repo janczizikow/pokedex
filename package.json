@@ -42,6 +42,7 @@
     "format": "prettier --write 'src/**/*.{js,jsx,scss}'",
     "test": "react-scripts test --env=jsdom",
     "test:coverage": "react-scripts test --env=jsdom --coverage",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
