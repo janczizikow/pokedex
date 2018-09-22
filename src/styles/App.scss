@@ -1,0 +1,12 @@
+@import 'styles/shared.scss';
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  &__content {
+    padding-top: 3rem;
+    flex: 1;
+  }
+}

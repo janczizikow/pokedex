@@ -1,0 +1,20 @@
+@import 'styles/shared.scss';
+
+.Header {
+  height: $header-height;
+  background-color: $primary;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  &__logo {
+    display: flex;
+    width: 120px;
+    height: 100%;
+    align-items: center;
+  }
+}
