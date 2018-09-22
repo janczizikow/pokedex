@@ -1,0 +1,21 @@
+@import 'styles/shared.scss';
+
+.Col {
+  flex: 1 0 100%;
+  max-width: 100%;
+}
+
+@mixin make-col($size, $columns: $grid-columns) {
+  flex: 0 0 percentage($size / $columns);
+  max-width: percentage($size / $columns);
+}
+
+@each $prefix, $breakpoint in $grid-breakpoints {
+  @for $i from 1 through $grid-columns {
+    .Col--#{$prefix}-#{$i} {
+      @include breakpoint($breakpoint) {
+        @include make-col($i);
+      }
+    }
+  }
+}
