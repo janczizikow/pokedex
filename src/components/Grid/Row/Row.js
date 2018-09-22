@@ -6,7 +6,7 @@ const propTypes = {
   tag: PropTypes.string,
   className: PropTypes.string,
   inline: PropTypes.bool,
-  wrap: PropTypes.oneOf([null, 'no-wrap', 'wrap-reverse']),
+  wrap: PropTypes.oneOf(['no-wrap', 'wrap-reverse']),
   column: PropTypes.bool,
   reverse: PropTypes.bool,
   align: PropTypes.oneOf(['start', 'center', 'end', 'baseline', 'stretch']),
