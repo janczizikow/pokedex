@@ -9,12 +9,16 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+/* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/* eslint-enable no-underscore-dangle */
 
-const store = createStore(reducer,
-  composeEnhancers(
-    applyMiddleware(thunk)
-));
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();
