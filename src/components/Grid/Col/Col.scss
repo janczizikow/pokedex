@@ -1,6 +1,7 @@
 @import 'styles/shared.scss';
 
 .Col {
+  padding: 0 $grid-gutters / 2;
   flex: 1 0 100%;
   max-width: 100%;
 }

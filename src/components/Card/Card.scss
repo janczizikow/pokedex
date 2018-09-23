@@ -1,6 +1,7 @@
 @import 'styles/shared.scss';
 
 .Card {
+  margin-bottom: $grid-gutters;
   display: block;
   width: 100%;
   background-color: $white;
