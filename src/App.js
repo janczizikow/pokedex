@@ -5,6 +5,7 @@ import { Container, Row, Col } from './components/Grid';
 import Card from './components/Card';
 import CardImg from './components/CardImg';
 import CardBody from './components/CardBody';
+import Label from './components/Label';
 import './styles/App.css';
 
 export const App = () => (
@@ -20,7 +21,8 @@ export const App = () => (
                 alt="pokemon"
               />
               <CardBody num="#001" heading="Bulbasaur">
-                <p>Labels here</p>
+                <Label color="Grass">Grass</Label>
+                <Label color="Poison">Poison</Label>
               </CardBody>
             </Card>
           </Col>

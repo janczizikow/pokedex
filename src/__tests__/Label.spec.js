@@ -1,16 +1,15 @@
-import Card from '../components/Card';
+import Label from '../components/Label';
 
-describe('<Card />', () => {
+describe('<Label />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<Card />);
+    wrapper = shallow(<Label />);
   });
 
   it('renders without crashing', () => {
     expect(wrapper).toHaveLength(1);
   });
-
   it('renders children', () => {
     wrapper.setProps({ children: 'child' });
     expect(wrapper.text()).toBe('child');
@@ -21,8 +20,8 @@ describe('<Card />', () => {
     expect(wrapper.hasClass('my-class')).toBeTruthy();
   });
 
-  it('renders custom Tag', () => {
-    wrapper.setProps({ tag: 'a' });
-    expect(wrapper.type()).toBe('a');
+  it('renders color class when given a prop', () => {
+    wrapper.setProps({ color: 'fire' });
+    expect(wrapper.hasClass('Label--fire')).toBeTruthy();
   });
 });
