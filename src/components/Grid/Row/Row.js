@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import './Row.css';
 
 const propTypes = {
   tag: PropTypes.string,
@@ -42,7 +43,8 @@ const Row = ({
     column && 'Row--column',
     align && `Row--align-${align}`,
     justify && `Row--justify-${justify}`,
-    reverse && column ? 'Row--column-reverse' : 'Row--row-reverse',
+    /* eslint-disable no-nested-ternary */
+    reverse ? (column ? 'Row--column-reverse' : 'Row--row-reverse') : null,
     className
   );
   return <Tag className={classes} {...attributes} />;

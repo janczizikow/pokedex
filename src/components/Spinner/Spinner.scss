@@ -1,0 +1,30 @@
+.Spinner {
+  flex: auto;
+  background: url("../../assets/loader.svg") center center no-repeat;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  animation: spinner 0.5s infinite forwards;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(90deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(270deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
