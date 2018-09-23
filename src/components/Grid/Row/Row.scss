@@ -3,7 +3,7 @@
 $gutter: $grid-gutters / 2;
 
 .Row {
-  margin: -$gutter 0 $gutter (-$gutter);
+  margin: 0 (-$gutter);
   padding: 0;
   display: flex;
   flex-wrap: wrap;
