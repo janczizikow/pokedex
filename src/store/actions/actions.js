@@ -13,7 +13,7 @@ export const fetchPokemonsFail = error => ({
 
 export const fetchPokemons = () => dispatch => {
   api
-    .get('/pokemons/asdasda')
+    .get()
     .then(res => {
       const data =
         process.env.NODE_ENV === 'production' ? res.data.pokemon : res.data;
