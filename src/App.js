@@ -13,7 +13,6 @@ import './styles/App.css';
 
 /* eslint-disable react/require-default-props */
 const propTypes = {
-  loading: PropTypes.bool,
   pokemons: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
@@ -24,6 +23,7 @@ const propTypes = {
     })
   ),
   fetchPokemons: PropTypes.func,
+  error: PropTypes.shape({ message: PropTypes.string.isRequired }),
 };
 
 export class App extends Component {
@@ -33,13 +33,12 @@ export class App extends Component {
   };
 
   render() {
-    // TODO: Add error handling
-    const { loading, pokemons } = this.props;
-    let pokemonsList = null;
-
-    if (loading) {
-      pokemonsList = <Spinner />;
-    }
+    const { pokemons, error } = this.props;
+    let pokemonsList = error ? (
+      <p style={{ margin: '0 auto' }}>{error.message}</p>
+    ) : (
+      <Spinner />
+    );
 
     if (pokemons) {
       pokemonsList = pokemons.map(pokemon => (
@@ -75,6 +74,7 @@ App.propTypes = propTypes;
 
 const mapStateToProps = state => ({
   pokemons: state.pokemons,
+  error: state.error,
 });
 
 const mapDispatchToProps = dispatch => ({

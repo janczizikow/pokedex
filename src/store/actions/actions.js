@@ -6,14 +6,20 @@ export const setPokemons = pokemons => ({
   payload: pokemons,
 });
 
+export const fetchPokemonsFail = error => ({
+  type: actionTypes.FETCH_POKEMONS_FAIL,
+  payload: error,
+});
+
 export const fetchPokemons = () => dispatch => {
   api
-    .get('/')
+    .get('/pokemons/asdasda')
     .then(res => {
-      dispatch(setPokemons(res.data));
+      const data =
+        process.env.NODE_ENV === 'production' ? res.data.pokemon : res.data;
+      dispatch(setPokemons(data));
     })
     .catch(error => {
-      // TODO: ADD ERROR HANDLING
-      console.log(error);
+      dispatch(fetchPokemonsFail(error));
     });
 };
