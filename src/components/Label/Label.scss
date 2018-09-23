@@ -1,0 +1,17 @@
+@import 'styles/shared.scss';
+
+.Label {
+  padding: 0 1rem;
+  margin: 0 0.25rem;
+  display: inline-block;
+  font-size: 0.725rem;
+  font-weight: bold;
+  color: $white;
+  border-radius: $border-radius;
+}
+
+@each $color, $hex in $colors {
+  .Label--#{$color} {
+    background-color: $hex;
+  }
+}
