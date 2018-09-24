@@ -9,10 +9,13 @@ const initialState = {
 };
 
 const setPokemons = (state, action) => {
+  const pokemons = action.payload.data;
   const pagination = parseLinks(action.payload.headers.link);
+  const totalCount = parseInt(action.payload.headers['x-total-count'], 10);
+
   return updateStateObject(state, {
-    pokemons: action.payload.data,
-    totalCount: parseInt(action.payload.headers['x-total-count'], 10),
+    pokemons,
+    totalCount,
     error: null,
     pagination: {
       currentPage: action.payload.page,

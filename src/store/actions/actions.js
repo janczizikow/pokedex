@@ -15,7 +15,6 @@ export const fetchPokemons = page => dispatch => {
   api
     .get(`?_page=${page}&_limit=12`)
     .then(response => {
-      // process.env.NODE_ENV === 'production' ? response.data.pokemon : response.data;
       const { data, headers } = response;
       dispatch(setPokemons({ page, headers, data }));
     })
