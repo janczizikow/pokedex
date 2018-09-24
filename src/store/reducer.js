@@ -1,16 +1,25 @@
 import * as actionTypes from './actions/actionTypes';
-import { updateStateObject } from './utils';
+import { parseLinks, updateStateObject } from './utils';
 
 const initialState = {
   pokemons: null,
   error: null,
+  totalCount: null,
+  pagination: null,
 };
 
-const setPokemons = (state, action) =>
-  updateStateObject(state, {
-    pokemons: action.payload,
+const setPokemons = (state, action) => {
+  const pagination = parseLinks(action.payload.headers.link);
+  return updateStateObject(state, {
+    pokemons: action.payload.data,
+    totalCount: parseInt(action.payload.headers['x-total-count'], 10),
     error: null,
+    pagination: {
+      currentPage: action.payload.page,
+      ...pagination,
+    },
   });
+};
 
 const fetchPokemonsFail = (state, action) =>
   updateStateObject(state, {
