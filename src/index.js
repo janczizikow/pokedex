@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import reducer from './store/reducer';
 import 'normalize.css';
 import './styles/index.css';
-import AppWithConnect from './App';
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 /* eslint-disable no-underscore-dangle */
@@ -20,7 +20,7 @@ const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppWithConnect />
+    <App />
   </Provider>,
   document.getElementById('root')
 );

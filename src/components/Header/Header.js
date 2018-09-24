@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@reach/router';
 import { Container } from '../Grid';
 import logo from '../../assets/logo.svg';
 import './Header.css';
@@ -6,9 +7,9 @@ import './Header.css';
 const Header = () => (
   <header className="Header">
     <Container fluid className="Header__inner">
-      <div className="Header__logo">
+      <Link to="/" className="Header__logo">
         <img src={logo} alt="logo" />
-      </div>
+      </Link>
     </Container>
   </header>
 );

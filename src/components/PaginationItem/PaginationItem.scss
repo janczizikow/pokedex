@@ -1,0 +1,59 @@
+@import 'styles/shared.scss';
+
+.PaginationItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0 0.5rem;
+  line-height: 32px;
+  text-align: center;
+  color: $primary;
+  background-color: transparent;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &--active {
+    color: $white;
+    background-color: $primary;
+    cursor: default;
+
+    &:hover {
+      text-decoration: none;
+      background-color: $primary;
+    }
+  }
+
+  &--outline {
+    border: 1px solid $primary;
+    transition: color 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+      color: $white;
+      background-color: $primary;
+    }
+  }
+
+  &--disabled {
+    color: $dark;
+    cursor: default;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
