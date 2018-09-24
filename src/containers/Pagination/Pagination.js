@@ -2,9 +2,10 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 import { connect } from 'react-redux';
-import { Row } from '../components/Grid';
-import PaginationUI from '../components/Pagination';
-import PaginationItem from '../components/PaginationItem';
+import { Row } from '../../components/Grid';
+import PaginationUI from '../../components/Pagination';
+import PaginationItem from '../../components/PaginationItem';
+import './Pagination.css';
 
 /* eslint-disable react/require-default-props */
 const propTypes = {
@@ -18,7 +19,7 @@ const propTypes = {
 };
 
 export const Pagination = ({ pagination }) => (
-  <Row align="center" justify="center" style={{ margin: '40px 0' }}>
+  <Row align="center" justify="center" className="PaginationWrapper">
     {pagination && (
       <PaginationUI>
         {pagination.prev && (

@@ -48,13 +48,13 @@ describe('<PaginationItem />', () => {
     });
 
     it('renders chevron left [previous]', () => {
-      wrapper = mount(<PaginationItem previous />);
-      expect(wrapper.contains(<MdChevronLeft />)).toBeTruthy();
+      wrapper.setProps({ previous: true });
+      expect(wrapper.find(MdChevronLeft)).toHaveLength(1);
     });
 
     it('renders chevron right [next]', () => {
-      wrapper = mount(<PaginationItem next />);
-      expect(wrapper.contains(<MdChevronRight />)).toBeTruthy();
+      wrapper.setProps({ next: true });
+      expect(wrapper.find(MdChevronRight)).toHaveLength(1);
     });
   });
 });
