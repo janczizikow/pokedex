@@ -5,6 +5,11 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
+const URLSearchParamsMock = {
+  get: jest.fn(),
+};
+
+global.URLSearchParams = URLSearchParamsMock;
 global.React = React;
 global.shallow = shallow;
 global.render = render;

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const baseURL =
   process.env.NODE_ENV === 'production'
-    ? 'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json'
+    ? 'https://pokedex-react-api.herokuapp.com/pokemon'
     : 'http://localhost:3001/pokemon/';
 
 const api = axios.create({

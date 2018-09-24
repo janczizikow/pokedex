@@ -1,7 +1,41 @@
+# Pokédex
+
 [![Build Status](https://travis-ci.org/janczizikow/pokedex.svg?branch=master)](https://travis-ci.org/janczizikow/pokedex)
 [![Coverage Status](https://coveralls.io/repos/github/janczizikow/pokedex/badge.svg?branch=master)](https://coveralls.io/github/janczizikow/pokedex?branch=master)
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+## Getting started
+
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more info below or in the official repo of [Create React App](https://github.com/facebookincubator/create-react-app). 
+
+Assuming you have node installed on your local machine, simply download/clone/fork the repo and run: 
+
+```shell
+yarn install
+```
+
+Or if you're oldschool or just prefer npm (instuctions bellow will continue use yarn commands):
+
+```shell
+npm install
+```
+
+Additionally you'll need [JSON Server](https://github.com/typicode/json-server)installed globally on your machine:
+
+```shell
+yarn global add json-server
+```
+
+That's it. Now you can start the server by running standard create-react-app command: `yarn start`, this will start the process for compiling .css to .scss, weback-dev-server and json-server for the API calls.
+
+This project uses eslint, stylelint and prettier for linting and code formating. You may check integrations for the IDE of your choice.
+
+To run tests use `yarn test` or `yarn test-coverage`. If you're using Visual Code Studion you can use [vscode-jest](https://github.com/jest-community/vscode-jest).
+
+### Second Task Solution
+
+The solution for the second task is included in the root directory of the project in the `junior_frontend_developer_task2.js` file. The file also includes some of my comments.
+
+<hr/>
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).

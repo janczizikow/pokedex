@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions';
 import { Container, Row, Col } from '../components/Grid';
-import PaginationWithConnect from './Pagination';
+import PaginationWithConnect from './Pagination/Pagination';
+import Modal from '../components/Modal';
 import Spinner from '../components/Spinner';
 import Card from '../components/Card';
 import CardImg from '../components/CardImg';
@@ -29,6 +30,11 @@ const propTypes = {
 };
 
 export class Main extends Component {
+  state = {
+    activePokemon: null,
+    isModalOpen: false,
+  };
+
   componentDidMount = () => {
     this.fetchPageData();
   };
@@ -48,8 +54,35 @@ export class Main extends Component {
     fetchPokemons(pageNumber || 1);
   };
 
+  handleKeyDown = e => {
+    if (e.keyCode === 27) {
+      this.handleCloseModal();
+    }
+  };
+
+  handleOpenModal = pokemonId => {
+    const { pokemons } = this.props;
+    const index = pokemons.findIndex(pokemon => pokemon.id === pokemonId);
+    const activePokemon = pokemons[index];
+
+    this.setState({
+      isModalOpen: true,
+      activePokemon,
+    });
+    document.addEventListener('keydown', this.handleKeyDown);
+  };
+
+  handleCloseModal = () => {
+    this.setState({
+      isModalOpen: false,
+    });
+    document.removeEventListener('keydown', this.handleKeyDown);
+  };
+
   render() {
     const { pokemons, error, totalCount } = this.props;
+    const { isModalOpen, activePokemon } = this.state;
+
     let pokemonsList = error ? (
       <p style={{ margin: '0 auto' }}>{error.message}</p>
     ) : (
@@ -66,7 +99,7 @@ export class Main extends Component {
     if (pokemons) {
       pokemonsList = pokemons.map(pokemon => (
         <Col key={pokemon.id} sm={6} md={4} lg={3}>
-          <Card>
+          <Card onClick={() => this.handleOpenModal(pokemon.id)}>
             <CardImg src={pokemon.img} alt={pokemon.name} />
             <CardBody num={`#${pokemon.num}`} heading={pokemon.name}>
               {pokemon.type.map(type => (
@@ -84,6 +117,11 @@ export class Main extends Component {
         {count}
         <Row>{pokemonsList}</Row>
         <PaginationWithConnect />
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={this.handleCloseModal}
+          pokemon={activePokemon}
+        />
       </Container>
     );
   }
