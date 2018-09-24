@@ -9,6 +9,7 @@ import './Pagination.css';
 
 /* eslint-disable react/require-default-props */
 const propTypes = {
+  loading: PropTypes.bool,
   pagination: PropTypes.shape({
     first: PropTypes.number,
     last: PropTypes.number,
@@ -18,9 +19,9 @@ const propTypes = {
   }),
 };
 
-export const Pagination = ({ pagination }) => (
+export const Pagination = ({ loading, pagination }) => (
   <Row align="center" justify="center" className="PaginationWrapper">
-    {pagination && (
+    {!loading && pagination ? (
       <PaginationUI>
         {pagination.prev && (
           <PaginationItem
@@ -56,7 +57,7 @@ export const Pagination = ({ pagination }) => (
           <PaginationItem tag={Link} to={`/?page=${pagination.next}`} next />
         )}
       </PaginationUI>
-    )}
+    ) : null}
   </Row>
 );
 
@@ -65,6 +66,7 @@ Pagination.propTypes = propTypes;
 const mapStateToProps = state => ({
   currentPage: state.currentPage,
   pagination: state.pagination,
+  loading: state.loading,
 });
 
 export default connect(mapStateToProps)(Pagination);

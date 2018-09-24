@@ -6,17 +6,27 @@ const initialState = {
   error: null,
   totalCount: null,
   pagination: null,
+  loading: true,
 };
 
+const showSpinner = state =>
+  updateStateObject(state, {
+    loading: true,
+  });
+
 const setPokemons = (state, action) => {
-  const pokemons = action.payload.data;
-  const pagination = parseLinks(action.payload.headers.link);
-  const totalCount = parseInt(action.payload.headers['x-total-count'], 10);
+  const pokemons = action.payload.response.data;
+  const pagination = parseLinks(action.payload.response.headers.link);
+  const totalCount = parseInt(
+    action.payload.response.headers['x-total-count'],
+    10
+  );
 
   return updateStateObject(state, {
     pokemons,
     totalCount,
     error: null,
+    loading: false,
     pagination: {
       currentPage: action.payload.page,
       ...pagination,
@@ -26,11 +36,14 @@ const setPokemons = (state, action) => {
 
 const fetchPokemonsFail = (state, action) =>
   updateStateObject(state, {
-    error: action.payload,
+    error: action.error,
+    loading: false,
   });
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SHOW_SPINNER:
+      return showSpinner(state);
     case actionTypes.SET_POKEMONS:
       return setPokemons(state, action);
     case actionTypes.FETCH_POKEMONS_FAIL:

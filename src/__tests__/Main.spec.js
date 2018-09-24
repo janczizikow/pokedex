@@ -2,10 +2,11 @@
 
 describe('<Main />', () => {
   // let wrapper;
-
   // beforeEach(() => {
-  //   wrapper = shallow(<Main />);
+  //   mockCallback = jest.fn();
+  //   wrapper = shallow(<Main showSpiner={mockCallback} />);
   // });
 
+  // Not sure how to test this :(
   it('renders without crashing', null);
 });

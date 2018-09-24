@@ -24,6 +24,8 @@ const propTypes = {
     })
   ),
   fetchPokemons: PropTypes.func,
+  showSpinner: PropTypes.func,
+  loading: PropTypes.bool,
   error: PropTypes.shape({ message: PropTypes.string.isRequired }),
   totalCount: PropTypes.number,
   location: PropTypes.shape({ search: PropTypes.string }),
@@ -48,9 +50,12 @@ export class Main extends Component {
   };
 
   fetchPageData = () => {
-    const { fetchPokemons, location } = this.props;
+    const { showSpinner, fetchPokemons, location } = this.props;
+    showSpinner();
+
     const query = new URLSearchParams(location.search);
     const pageNumber = parseInt(query.get('page'), 10);
+
     fetchPokemons(pageNumber || 1);
   };
 
@@ -80,17 +85,17 @@ export class Main extends Component {
   };
 
   render() {
-    const { pokemons, error, totalCount } = this.props;
+    const { loading, pokemons, error, totalCount } = this.props;
     const { isModalOpen, activePokemon } = this.state;
+    let pokemonsList;
 
-    let pokemonsList = error ? (
-      <p style={{ margin: '0 auto' }}>{error.message}</p>
-    ) : (
-      <Spinner />
-    );
+    if (error) {
+      pokemonsList = <p style={{ margin: '0 auto' }}>{error.message}</p>;
+    }
+
     let count = null;
 
-    if (pokemons && totalCount) {
+    if (!loading && pokemons && totalCount) {
       /* eslint-disable react/jsx-one-expression-per-line */
       count = <h2>{totalCount} Pokemons</h2>;
       /* eslint-enable react/jsx-one-expression-per-line */
@@ -112,6 +117,11 @@ export class Main extends Component {
         </Col>
       ));
     }
+
+    if (loading) {
+      pokemonsList = <Spinner />;
+    }
+
     return (
       <Container>
         {count}
@@ -133,10 +143,12 @@ const mapStateToProps = state => ({
   pokemons: state.pokemons,
   error: state.error,
   totalCount: state.totalCount,
+  loading: state.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchPokemons: page => dispatch(actions.fetchPokemons(page)),
+  showSpinner: () => dispatch(actions.showSpinner()),
 });
 
 export default connect(

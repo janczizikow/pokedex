@@ -1,1 +1,6 @@
-export { setPokemons, fetchPokemons } from './actions';
+export {
+  showSpinner,
+  setPokemons,
+  fetchPokemonsFail,
+  fetchPokemons,
+} from './actions';

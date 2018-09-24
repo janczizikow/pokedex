@@ -5,10 +5,10 @@ import { MdClose } from 'react-icons/md';
 import Label from '../Label';
 import './Modal.css';
 
-ReactModal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#root');
 
 const propTypes = {
-  isOpen: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
   pokemon: PropTypes.shape({
     id: PropTypes.number,
